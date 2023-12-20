@@ -232,7 +232,6 @@
     })
     //identify the lon and lan
     loc.disabled=true
-    let x = document.createElement("p")
     let lon;
     let lan;
     let curr = 0
@@ -250,11 +249,9 @@
         function showPosition(position) {
             lan = position.coords.latitude
             lon = position.coords.longitude
-
-            x.innerText = "Latitude: " + position.coords.latitude +
-                "," + position.coords.longitude;
-            console.log(x);
-            hi()
+            if(lan){
+                hi()
+            }
             async function hi() {
                 let k = await fetch(`https://geocode.maps.co/reverse?lat=${lan}&lon=${lon}`)
                 let response = await k.json()
@@ -270,9 +267,6 @@
         function showerror(error){
             if(error.PERMISSION_DENIED){
                 alert("user denied the location")
-            }
-            if(error.POSITION_UNAVAILABLE){
-                alert("position is unavaible")
             }
         }
     })
