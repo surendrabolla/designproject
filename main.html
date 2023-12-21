@@ -249,16 +249,18 @@
         function showPosition(position) {
             lan = position.coords.latitude
             lon = position.coords.longitude
-            if(lan){
-                hi()
-            }
+            console.log(lan);
+            console.log(lon);
+            hi()
             async function hi() {
                 let k = await fetch(`https://geocode.maps.co/reverse?lat=${lan}&lon=${lon}`)
+                console.log(k);
                 let response = await k.json()
-                console.log(response.address.village);
-                loc.innerText = response.address.village
+                console.log(response);
+                console.log(response.address);
+                loc.innerText = response.address.postcode
                 loc.style.width="50px"
-                loc.style.fontSize="12px"
+                loc.style.fontSize="8px"
                 loc.style.height="50px"
                 loc.style.paddingTop="15px"
                 loc.style.borderRadius="50%"
